@@ -98,14 +98,12 @@ def matching(person: User):                  # 引数personとはマッチング
     for i in range(0, len(targetUser), 1):
         # もし比較対象のユーザーが「最多フラグ一致度」を持っていたら、offerUser[]にappendする
         if(bin(person.managementIssuesArray & targetUser[i].managementIssuesArray).count("1") == maxMatchingParam):
-            '''
             doc_ref = db.collection('users').document(str(i))
             snapshot = doc_ref.get()
             ss = snapshot.to_dict()
             if(ss["will"] == True):
                 offerUser.append(User(i))
-            '''
-            offerUser.append(User(i))
+            
     return offerUser
 
 @api_view(["GET"])
