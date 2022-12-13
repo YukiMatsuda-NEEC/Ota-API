@@ -99,7 +99,7 @@ def matching(person: User):                  # 引数personとはマッチング
         doc_ref = db.collection('users').document(str(i))
         doc = doc_ref.get()
         document = doc.to_dict()
-        # もし比較対象のユーザーが「最多フラグ一致度」を持っていたら、offerUser[]にappendする
+        # もし比較対象のユーザーが「最多フラグ一致度」を持っていて、かつwillがTrueなら、offerUser[]にappendする
         if((bin(person.managementIssuesArray & targetUser[i].managementIssuesArray).count("1") == maxMatchingParam) and (document["will"] == True)):
             offerUser.append(User(i))
             
