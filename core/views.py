@@ -96,12 +96,14 @@ def matching(person: User):                  # 引数personとはマッチング
 
     # 「最多フラグ一致度」を持つユーザーを配列に追加する
     for i in range(1, len(targetUser), 1):
+        '''
         doc_ref = db.collection('users').document(str(i))
         doc = doc_ref.get()
         document = doc.to_dict()
+        '''
         # もし比較対象のユーザーが「最多フラグ一致度」を持っていて、will==Trueなら、offerUser[]にappendする
-        #if(bin(person.managementIssuesArray & targetUser[i].managementIssuesArray).count("1") == maxMatchingParam):
-        if((bin(person.managementIssuesArray & targetUser[i].managementIssuesArray).count("1") == maxMatchingParam) and (document["will"] == True)):
+        #if((bin(person.managementIssuesArray & targetUser[i].managementIssuesArray).count("1") == maxMatchingParam) and (document["will"] == True)):
+        if(bin(person.managementIssuesArray & targetUser[i].managementIssuesArray).count("1") == maxMatchingParam):
             offerUser.append(User(i))
             
     return offerUser
