@@ -59,7 +59,7 @@ MIDDLEWARE = [
 # MIDDLEWARE　の直下で追加
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
-    'https://ota-collab.vercel.app/'
+    'https://ota-collab.vercel.app'
 )
 
 ROOT_URLCONF = 'api.urls'
