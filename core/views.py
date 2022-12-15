@@ -87,7 +87,7 @@ def matching(person: User):                  # 引数personとはマッチング
     currentMatchingParam = 0            # 現在比較中の相手とのフラグ一致度
     
     # ユーザーIDが若い順に経営課題一致度を比較している（「最多フラグ一致度」を調べるため）
-    for i in range(1, len(targetUser), 1):
+    for i in range(0, len(targetUser), 1):
         currentMatchingParam = bin(person.managementIssuesArray & targetUser[i].managementIssuesArray).count("1")
 #        print("current: "+str(currentMatchingParam)+", "+str(int(person.managementIssuesArray) & int(targetUser[i].managementIssuesArray)))
         # もしかつてない一致度を持つユーザーが現れたらその一致度を「最多フラグ一致度」とする
@@ -95,13 +95,13 @@ def matching(person: User):                  # 引数personとはマッチング
             maxMatchingParam = currentMatchingParam
 
     # 「最多フラグ一致度」を持つユーザーを配列に追加する
-    for i in range(1, len(targetUser), 1):
+    for i in range(0, len(targetUser), 1):
         '''
         doc_ref = db.collection('users').document(str(i))
         doc = doc_ref.get()
         document = doc.to_dict()
         '''
-        # もし比較対象のユーザーが「最多フラグ一致度」を持っていて、will==Trueなら、offerUser[]にappendする
+        # もし比較対象のユーザーが「最多フラグ一致度」を持っていたら、offerUser[]にappendする
         #if((bin(person.managementIssuesArray & targetUser[i].managementIssuesArray).count("1") == maxMatchingParam) and (document["will"] == True)):
         if(bin(person.managementIssuesArray & targetUser[i].managementIssuesArray).count("1") == maxMatchingParam):
             offerUser.append(User(i))
