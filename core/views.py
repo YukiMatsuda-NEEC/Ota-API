@@ -99,10 +99,8 @@ def matching(person: User):                  # 引数personとはマッチング
         doc_ref = db.collection('users').document(str(i))
         doc = doc_ref.get()
         document = doc.to_dict()
-        
         # もし比較対象のユーザーが「最多フラグ一致度」を持っていて、will==Trueなら、offerUser[]にappendする
         if((bin(person.managementIssuesArray & targetUser[i].managementIssuesArray).count("1") == maxMatchingParam) and (document["will"] == True)):
-        #if(bin(person.managementIssuesArray & targetUser[i].managementIssuesArray).count("1") == maxMatchingParam):
             offerUser.append(User(i))
             
     return offerUser
@@ -120,7 +118,9 @@ def returnMatching(request, slug):
                 offerUserID.append(offerUser[i].userID)
         obj = OffersArray(offerUserID)
         offers = OffersSerializer(obj)
-        return Response(offers.data)
+        response = Response(offers.data)
+        response['Access-Control-Allow-Origin'] = 'https://ota-collab.vercel.app'
+        return response
 
 @api_view(["GET"])
 def getLastNum(request):
