@@ -120,7 +120,9 @@ def returnMatching(request, slug):
                 offerUserID.append(offerUser[i].userID)
         obj = OffersArray(offerUserID)
         offers = OffersSerializer(obj)
-        return Response(offers.data)
+        response = Response(offers.data)
+        response['Access-Control-Allow-Origin'] = 'https://ota-collab.vercel.app'
+        return response
 
 @api_view(["GET"])
 def getLastNum(request):
