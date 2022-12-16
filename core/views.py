@@ -132,4 +132,6 @@ def getLastNum(request):
         doc_ref.update({'lastNum': ln})  #lust_numDBの更新 
         last_num = LastNumClass(str(ln))
         LastNum = LastNumSerializer(last_num)
-        return Response(LastNum.data)
+        response = Response(LastNum.data)
+        response['Access-Control-Allow-Origin'] = 'https://ota-collab.vercel.app'
+        return response
